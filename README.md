@@ -1,2 +1,2 @@
 # voter-registration-system
-A Java console app for voter's to register with.
+A Java console app for voters to register with.
