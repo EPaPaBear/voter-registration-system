@@ -18,9 +18,23 @@ public class RegistrationPageController implements Controller {
 			DoTask.getInstance().callView("RegisterUser", object);
 		}
 		else {
-			String voterid = register.register(object);
-			System.out.println("Registration successful! Your voter's ID is " + voterid + ".\nKindly contact your administrator for further details or changes.");
-			return;
+			if(object.getOption().equals("Admin")) {
+				String id = register.register(object);
+				if(id.equals(null)) {
+					System.out.println("An error occured! Redirecting to homepage");
+					DoTask.getInstance().callView("HomePage", object);
+				}
+				else {
+					System.out.println("Registration successful! User " + object.getfName() + " voter id is " + id);
+					System.out.println("Returning to homepage...");
+					DoTask.getInstance().callView("HomePage", object);
+				}
+			}
+			else {
+				String voterid = register.register(object);
+				System.out.println("Registration successful! Your voter's ID is " + voterid + ".\nKindly contact your administrator for further details or changes.");
+				return;
+			}
 		}
 	}
 

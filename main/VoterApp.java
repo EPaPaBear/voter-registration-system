@@ -5,9 +5,7 @@ package main.java.vr.voter_reg.main;
 public class VoterApp {
 
 	public static void main(String[] args) {
-			
 		DoTask.getInstance().callClass("Main", "doSomething", null);
-		
 	}
 	
 }
