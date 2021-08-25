@@ -17,6 +17,7 @@ public class DTO {
 	private String username = null;
 	private String userID = null;
 	private String password = null;
+	private String option = null;
 	private Date dateBirth = null;
 	private Date dateReg = null;
 	
@@ -176,5 +177,13 @@ public class DTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
 	}
 }
