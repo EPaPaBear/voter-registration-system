@@ -23,7 +23,7 @@ public class HomePageAdminController implements Controller {
 			
 			String userobjID = loginadmin.login(object);
 			
-			if(userobjID.equals(null)) {
+			if(userobjID == null) {
 				System.out.println("Ooops! Looks like something went wrong, try again.");
 				DoTask.getInstance().callView("LoginAdmin", object);
 			}

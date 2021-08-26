@@ -21,11 +21,19 @@ public class HomePageView implements View {
 			objectData.setUsername(session.getProperty("Username"));
 			objectData.setUserID(session.getProperty("Userid"));
 			
-			System.out.println("Hey there Admin " + objectData.getUsername() + ", ID: " + objectData.getUserID());
-			adminuser.setUsername(objectData.getUsername());
-			adminuser.setUserID(objectData.getUserID());
+			if(objectData.getUsername().equals("null") && objectData.getUserID().equals("null")) {
+				System.out.println("Sorry, could not find the entered details, please try again");
+				DoTask.getInstance().callClass("Main", "doSomething", objectData);
+			}
+			
+			else {
+				System.out.println("Hey there Admin " + objectData.getUsername() + ", ID: " + objectData.getUserID());
+				adminuser.setUsername(objectData.getUsername());
+				adminuser.setUserID(objectData.getUserID());
+			}
 		} 
 		catch (IOException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -36,7 +44,6 @@ public class HomePageView implements View {
 		
 	}
 
-	@SuppressWarnings("resource")
 	@Override
 	public void displayOptions() {
 		
@@ -49,34 +56,38 @@ public class HomePageView implements View {
 				case "C":
 					adminuser.setOption("C");
 					DoTask.getInstance().callClass("HomeOption", "doSomething", adminuser);
-					scanner.close();
+					//scanner.close();
 					break;
 				case "R":
 					System.out.println("Display [A]ll users\nFind [S]pecific user");
 					adminopt = scanner.nextLine();
 					adminuser.setOption("R" + adminopt);
 					DoTask.getInstance().callClass("HomeOption", "doSomething", adminuser);
-					scanner.close();
+					//scanner.close();
 					break;
 				case "U":
 					adminuser.setOption("U");
 					DoTask.getInstance().callClass("HomeOption", "doSomething", adminuser);
-					scanner.close();
+					//scanner.close();
 					break;
 				case "D":
 					adminuser.setOption("D");
 					DoTask.getInstance().callClass("HomeOption", "doSomething", adminuser);
-					scanner.close();
+					//scanner.close();
 					break;
 				case "E":
 					System.out.println("Exiting...");
-					return;
+					Properties sesh = readprops("AdminSession.properties");
+					sesh.setProperty("Username", "null");
+					sesh.setProperty("Userid", "null");
+					System.exit(1);
 				default:
 					System.out.println("Invalid option! Try again");
 					this.displayOptions();
-					scanner.close();
 					break;
 			}
+			
+			scanner.close();
 		}catch(Exception e) {
 				System.out.println(e.getClass() + " " + e.getCause() + ": " + e.getMessage());
 				e.printStackTrace();

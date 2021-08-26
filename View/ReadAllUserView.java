@@ -36,15 +36,14 @@ public class ReadAllUserView implements View{
 		switch(choice) {
 			case "F":
 				DoTask.getInstance().callView("ReadSpecUser", new DTO());
-				scanner.close();
 				break;
 			case "E":
-			default:
-				scanner.close();
 				System.out.println("Redirecting to homepage...");
 				DoTask.getInstance().callView("HomePage", new DTO());
 				break;
 		}
+		
+		scanner.close();
 		
 	}
 	

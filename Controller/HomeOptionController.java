@@ -23,13 +23,15 @@ public class HomeOptionController implements Controller{
 					DoTask.getInstance().callView("ReadSpecUser", null);
 					break;
 				case "U":
-					System.out.println("To do tomorrow");
+					DoTask.getInstance().callView("UpdateUser", object);
 					break;
 				case "D":
-					System.out.println("To do tomorrow");
+					DoTask.getInstance().callView("DeleteUser", object);
 					break;
-					default:
-						System.out.println("An error occured!");
+				default:
+					System.out.println("An error occured!");
+					DoTask.getInstance().callView("HomePage", object);
+					break;
 			}
 		}catch(Throwable e) {
 			System.out.println("You prolly fucked up somewhere.\n" + e.getMessage());
